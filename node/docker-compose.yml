@@ -4,6 +4,8 @@ services:
     image: selenium/node-chrome:3.141.59-xenon
     volumes:
       - /dev/shm:/dev/shm
+    ports:
+      - "5000-5100:5555"
     environment:
       - HUB_HOST
       - HUB_PORT=4444
