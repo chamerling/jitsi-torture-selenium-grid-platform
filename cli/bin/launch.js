@@ -11,7 +11,7 @@ const HUB_PORT = process.env.HUB_PORT || 4444;
 const HUB_HOST = process.env.HUB_HOST || "localhost";
 const NODE_PORT = process.env.NODE_PORT || 5000;
 
-const commands = Array(Number(NODE_SIZE)).fill(null).map((u, i) => `docker run -d -p ${Number(NODE_PORT) + i}:5555 -e HUB_HOST=${HUB_HOST} -e HUB_PORT=${HUB_PORT} -e REMOTE_HOST=http://${LOCAL_IP}:${Number(NODE_PORT) + i} -v /dev/shm:/dev/shm ${image}`);
+const commands = Array(Number(NODE_SIZE)).fill(null).map((u, i) => `docker run -d -p ${Number(NODE_PORT) + i}:5555 -e HUB_HOST=${HUB_HOST} -e HUB_PORT=${HUB_PORT} -e REMOTE_HOST=http://${LOCAL_IP}:${Number(NODE_PORT) + i} -v /dev/shm:/dev/shm -v /usr/share/jitsi:/usr/share/jitsi ${image}`);
 
 Promise.all(commands.map(command => {
   console.log(command);
